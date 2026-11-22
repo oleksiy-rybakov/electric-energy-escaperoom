@@ -437,31 +437,31 @@ const TASKS = [
   {
     title:"Der letzte Filmstreifen", tag:"Schreibtisch", prompt:"Ein Wagen rollt in einen Federpuffer. Verfolge seine Energie von Bild zu Bild.",
     steps:[
-      choose("top","Am Start","Bild A zeigt den ruhenden Wagen und eine entspannte Feder. Welchen mechanischen Energiespeicher setzt die Abfahrt frei?",
+      choose("top","Am Start","In Bild A steht der Wagen 80 cm über der unteren Schiene. Die Feder ist entspannt. Welche mechanische Energie kann sich beim Herabrollen in Bewegungsenergie umwandeln?",
         ["Die Spannenergie der Feder","Die Höhenenergie von Wagen und Erde","Die kinetische Energie des Wagens"],1,
         "Vergleiche die Lage des Wagens mit der unteren Schiene. Diese ist das Nullniveau.",
         "Der angehobene Wagen kann beim Herabrollen Arbeit verrichten. Am Start ist er in Ruhe, seine kinetische Energie ist null."),
       calc("height","Die Höhe umrechnen","Die Schiene liegt 80 cm unter dem Startpunkt. Wie groß ist der Höhenunterschied in Metern?","m",0.8,
         "Ein Meter hat 100 Zentimeter.","h = 80 cm ÷ (100 cm/m)","Für die Rechnung mit g in N/kg brauchst du Meter.",
         {errors:[[80,"80 ist die Angabe in Zentimetern. In Metern muss die Zahl kleiner sein."]]}),
-      calc("weight","Was zieht den Wagen nach unten?","Die Masse beträgt 2,5 kg. Wie groß ist die Gewichtskraft des Wagens?","N",25,
+      calc("weight","Was zieht den Wagen nach unten?","Der Wagen hat eine Masse von 2,5 kg. Rechne mit einem Ortsfaktor von 10 N/kg. Wie groß ist seine Gewichtskraft in Newton?","N",25,
         "Jedes Kilogramm erfährt hier etwa 10 N Gewichtskraft.","F_G = m · g = 2,5 kg · 10 N/kg","Der Zahlenwert einer Masse in kg ist etwas anderes als der Betrag der Gewichtskraft in N."),
-      calc("heightEnergy","Den ersten Speicher beziffern","Wie viel Höhenenergie hat der Wagen gegenüber der unteren Schiene? Verwende deine Kraft und deine Höhe.","J",20,
+      calc("heightEnergy","Den ersten Speicher beziffern","Der Wagen hat eine Gewichtskraft von 25 N und startet 0,80 m über der unteren Schiene. Wie viel Höhenenergie hat er gegenüber dieser Schiene?","J",20,
         "Beim Anheben hättest du gegen die Gewichtskraft Arbeit verrichtet.","Eₕ = F_G · h = 25 N · 0,80 m","Ein Newtonmeter Arbeit überträgt ein Joule Energie."),
-      calc("kinetic","Am Fuß der Rampe","Der Wagen rollt ohne Reibung bis B. Wie groß ist seine kinetische Energie dort?","J",20,
+      calc("kinetic","Am Fuß der Rampe","Der Wagen startet aus der Ruhe mit 20 J Höhenenergie. Er rollt reibungsfrei bis zum Nullniveau B, wo die Feder noch entspannt ist. Wie groß ist seine kinetische Energie in B?","J",20,
         "In B liegt der Wagen am Nullniveau und die Feder ist noch entspannt. Wo steckt die anfängliche Höhenenergie jetzt?",
         "Eₖ(B) = Eₕ(A) = 2,5 kg · 10 N/kg · 0,80 m","Bis B hat sich die Energieform geändert. Die Gesamtenergie ist gleich geblieben."),
       choose("speedFormula","Nach der Geschwindigkeit umstellen","Die Bewegungsenergie ist Eₖ = ½ · m · v². Welcher Ausdruck liefert zuerst das Geschwindigkeitsquadrat?",
         ["v² = Eₖ · m / 2","v² = Eₖ / (2 · m)","v² = 2 · Eₖ / m"],2,
         "Multipliziere beide Seiten der Energiegleichung mit 2 und teile durch die Masse.",
         "So bleibt auf der rechten Seite nur v². Erst nach dem Einsetzen ziehst du die Wurzel."),
-      calc("speedSquared","Das Quadrat berechnen","Setze die kinetische Energie und die Masse ein. Wie groß ist v²?","m²/s²",16,
+      calc("speedSquared","Das Quadrat berechnen","Am Fuß der Rampe hat der Wagen eine kinetische Energie von 20 J. Seine Masse beträgt 2,5 kg. Wie groß ist sein Geschwindigkeitsquadrat v² in m²/s²?","m²/s²",16,
         "Du kennst Eₖ = 20 J und m = 2,5 kg.","v² = 2 · Eₖ / m = 2 · 20 J / 2,5 kg","J/kg entspricht m²/s².",
         {errors:[[4,"4 ist schon die Wurzel. In diesem Schritt ist noch das Quadrat gefragt."]]}),
-      calc("speed","Aus dem Quadrat zur Geschwindigkeit","Jetzt ziehst du die Wurzel. Wie schnell fährt der Wagen in B?","m/s",4,
+      calc("speed","Aus dem Quadrat zur Geschwindigkeit","Für den Wagen in B hast du v² = 16 m²/s² berechnet. Wie groß ist seine Geschwindigkeit v in m/s?","m/s",4,
         "Welche positive Zahl ergibt mit sich selbst multipliziert 16?","v = √(16 m²/s²)","4 m/s entsprechen bei gleichbleibendem Tempo vier Metern in einer Sekunde.",
         {errors:[[16,"16 ist dein Wert für v². Die Geschwindigkeit ist die Quadratwurzel daraus."]]}),
-      calc("spring","Im Puffer bilanzieren","In C ruht der Wagen. Wagen, Schiene und Puffer haben zusammen 5 J innere Energie hinzugewonnen. Wie viel steckt in der zusammengedrückten Feder?","J",15,
+      calc("spring","Im Puffer bilanzieren","Der Wagen erreicht den Puffer mit 20 J kinetischer Energie und kommt auf gleicher Höhe kurz zum Stillstand. Dabei nimmt die innere Energie von Wagen, Schiene und Puffer insgesamt um 5 J zu. Wie viel Spannenergie speichert die zusammengedrückte Feder?","J",15,
         "Im Puffer verteilt sich die Energie aus B auf zwei Speicher.","E_spann = Eₖ(B) − ΔE_innen = 20 J − 5 J","Die Bilanz schließt mit 15 J Spannenergie und 5 J zusätzlicher innerer Energie."),
       choose("boundary","Die Systemgrenze wählen","Der Wagen allein besitzt in C keine Bewegungsenergie mehr. Welches System lässt dich die ursprünglichen 20 J bis zur Endlage vollständig wiederfinden, wenn kein Austausch mit der übrigen Umgebung stattfindet?",
         ["Nur die zunächst entspannte Feder","Nur den inzwischen ruhenden Wagen","Wagen, Erde, Schiene und Federpuffer zusammen"],2,
@@ -476,28 +476,28 @@ const TASKS = [
   {
     title:"Zwei Wege für eine Last", tag:"Tafel", prompt:"Ein Kasten muss auf dieselbe Plattform. Vergleiche den senkrechten Weg mit der Rampe.",
     steps:[
-      calc("force","Senkrecht ziehen","Ein Kasten mit 12 kg wird gleichförmig senkrecht gehoben. Wie groß ist die nötige Seilkraft?","N",120,
+      calc("force","Senkrecht ziehen","Das Seil hebt einen Kasten der Masse 12 kg gleichförmig senkrecht an. Der Ortsfaktor beträgt 10 N/kg. Wie groß ist die nötige Seilkraft in Newton?","N",120,
         "Bei gleichförmiger Bewegung gleicht die Seilkraft die Gewichtskraft aus.","F_Seil = m · g = 12 kg · 10 N/kg","Kraft beschreibt hier, wie stark das Seil zieht."),
-      calc("direct","Die Arbeit beim direkten Hub","Die Plattform ist 1,50 m höher als der Start. Wie viel Arbeit verrichtet das Seil auf dem senkrechten Weg?","J",180,
+      calc("direct","Die Arbeit beim direkten Hub","Das Seil zieht den Kasten mit einer konstanten Kraft von 120 N senkrecht nach oben. Die Plattform liegt 1,50 m höher als der Startpunkt. Welche Arbeit verrichtet das Seil beim Heben?","J",180,
         "Seilkraft und Weg zeigen beide nach oben.","W = F · s = 120 N · 1,50 m","Die Höhenenergie von Kasten und Erde nimmt um diesen Betrag zu."),
-      calc("rampForce","Der Preis des längeren Weges","Die reibungsfreie Rampe ist 6,0 m lang. Beide Wege führen auf dieselbe Höhe. Welche Zugkraft genügt längs der Rampe?","N",30,
+      calc("rampForce","Der Preis des längeren Weges","Beim senkrechten Hub gewinnt der Kasten 180 J Höhenenergie. Über eine 6,0 m lange, reibungsfreie Rampe soll er gleichförmig dieselbe Höhe erreichen. Welche Zugkraft ist parallel zur Rampe nötig?","N",30,
         "Oben hat der Kasten dieselbe Höhenenergie. Die erforderliche Arbeit verteilt sich auf den längeren Weg.","F = W / s = 180 J / 6,0 m","Die Rampe ist viermal so lang wie der direkte Weg. Deshalb genügt ein Viertel der Kraft."),
-      calc("rampWork","Die beiden Wege vergleichen","Rechne zur Kontrolle auch für die Rampe Kraft mal Weg. Wie groß ist die übertragene Arbeit?","J",180,
+      calc("rampWork","Die beiden Wege vergleichen","Auf der reibungsfreien Rampe zieht das Seil mit 30 N parallel zur Fahrtrichtung. Der Kasten legt 6,0 m zurück. Wie viel Arbeit verrichtet das Seil?","J",180,
         "Benutze die Zugkraft entlang der Rampe und die Länge der Rampe.","W = 30 N · 6,0 m","Beide idealen Wege führen bei gleicher Anfangs- und Endgeschwindigkeit auf dieselben 180 J."),
-      calc("directPower","Wie schnell wurde gehoben?","Der direkte Hub dauert 3,0 s. Welche mittlere Leistung gibt das Seil an den Kasten ab?","W",60,
+      calc("directPower","Wie schnell wurde gehoben?","Beim senkrechten Hub verrichtet das Seil in 3,0 s eine Arbeit von 180 J. Welche mittlere Leistung gibt es dabei an den Kasten ab?","W",60,
         "Leistung sagt, wie viel Energie pro Sekunde übertragen wird.","P = W / Δt = 180 J / 3,0 s","60 W bedeuten hier 60 J pro Sekunde."),
-      calc("rampPower","Der langsamere Hub","Die Fahrt über die ideale Rampe dauert 6,0 s. Welche mittlere Leistung wird benötigt?","W",30,
+      calc("rampPower","Der langsamere Hub","Auf der reibungsfreien Rampe verrichtet das Seil eine Arbeit von 180 J. Die Fahrt dauert 6,0 s. Welche mittlere Leistung gibt das Seil dabei ab?","W",30,
         "Die Arbeit bleibt gleich, die Zeit hat sich verdoppelt.","P = 180 J / 6,0 s","Gleiche Arbeit kann je nach Dauer unterschiedliche Leistung erfordern."),
-      calc("roughForce","An der rauen Stelle","Auf einer zweiten, gleich langen Rampe wirkt zusätzlich eine konstante Reibungskraft von 5 N entgegen der Fahrt. Welche Zugkraft hält den Kasten in gleichförmiger Bewegung?","N",35,
+      calc("roughForce","An der rauen Stelle","Auf der reibungsfreien Rampe reichen 30 N Zugkraft für die gleichförmige Auffahrt. Auf einer gleich steilen, rauen Rampe wirkt zusätzlich eine Reibungskraft von 5 N entgegen der Fahrt. Welche Zugkraft ist dort nötig?","N",35,
         "Das Seil muss zusätzlich zur idealen Zugkraft die Reibung überwinden.","F_rau = 30 N + 5 N","Für denselben Höhengewinn ist auf der rauen Rampe mehr Kraft nötig."),
-      calc("roughWork","Arbeit mit Reibung","Wie viel Arbeit verrichtet das Seil jetzt über die 6,0 m lange raue Rampe?","J",210,
+      calc("roughWork","Arbeit mit Reibung","Das Seil zieht den Kasten mit einer konstanten Kraft von 35 N parallel zur rauen Rampe. Wie viel Arbeit verrichtet es auf dem Weg von 6,0 m?","J",210,
         "Die größere Kraft wirkt über die ganze Rampe.","W_rau = 35 N · 6,0 m","Ein Teil der Arbeit erhöht die innere Energie der Reibflächen."),
-      calc("heat","Wohin geht die Mehrarbeit?","Wie groß ist die Zunahme der inneren Energie von Rampe und Kasten?","J",30,
+      calc("heat","Wohin geht die Mehrarbeit?","Auf der rauen Rampe verrichtet das Seil 210 J Arbeit. Die Höhenenergie des Kastens nimmt um 180 J zu, seine Geschwindigkeit bleibt gleich. Um wie viel steigt die innere Energie von Rampe und Kasten?","J",30,
         "Ziehe von der zugeführten Arbeit die gewonnene Höhenenergie ab.","ΔE_innen = 210 J − 180 J","Auch 5 N · 6,0 m liefert die zusätzliche innere Energie."),
-      calc("down","Das Vorzeichen beim Absenken","Nun senkt das Seil den Kasten senkrecht und gleichförmig 1,50 m ab. Welche Arbeit verrichtet das nach oben ziehende Seil am System Kasten–Erde?","J",-180,
+      calc("down","Das Vorzeichen beim Absenken","Beim gleichförmigen Absenken bewegt sich der Kasten 1,50 m nach unten. Das Seil zieht mit 120 N nach oben. Welche Arbeit verrichtet das Seil am System Kasten–Erde? Gib auch das Vorzeichen an.","J",-180,
         "Die Seilkraft zeigt nach oben, die Bewegung nach unten. Das System gibt Energie ab.","W_Seil = −F · s = −120 N · 1,50 m","Das Vorzeichen kennzeichnet die Richtung der Energieübertragung.",
         {errors:[[180,"Der Betrag stimmt. Beim Absenken entzieht das Seil dem System Energie. Welches Vorzeichen gehört dazu?"]]}),
-      choose("hold","Ist Halten schon Hubarbeit?","Jemand hält den Kasten 10 s lang ruhig über dem Boden. Welche Aussage beschreibt die mechanische Arbeit der Haltekraft am Kasten?",
+      choose("hold","Ist Halten schon Hubarbeit?","Eine Hand übt eine Haltekraft von 120 N nach oben aus. Der Kasten bleibt 10 s lang auf derselben Höhe in Ruhe. Welche Aussage zur mechanischen Arbeit der Haltekraft am Kasten stimmt?",
         ["Sie beträgt 120 J, weil die Gewichtskraft 120 N beträgt.","Sie beträgt 0 J. Die Hand übt eine Kraft aus, während sich der Kasten nicht bewegt.","Sie wächst mit der Zeit, weil das Halten anstrengend ist."],1,
         "Prüfe die zwei Faktoren in W = F · s. Welchen Weg legt der Angriffspunkt der Kraft zurück?",
         "Die Hand übt eine Kraft aus, der Weg ist null. Die Muskeln setzen beim Halten dennoch chemische Energie um. Das erklärt, warum es sich anstrengend anfühlt."),
@@ -510,25 +510,37 @@ const TASKS = [
         ["Nur die Masse wiegen und zählen, wie oft die Last gehoben wird.","Masse wiegen, den senkrechten Höhenunterschied messen und bei drei Hüben jeweils nur die Aufwärtsbewegung stoppen.","Die Strecke beim Hin- und Rückweg addieren und die Körpergröße messen."],1,
         "Du brauchst zuerst die Hubarbeit und dann die Zeit, in der diese Arbeit verrichtet wird.",
         "Masse, Hubhöhe und Hubzeit genügen. Identische Höhenmarken machen die drei Zeitmessungen vergleichbar."),
-      activity("lift","observations","Messreihe aufnehmen","Lege fest, wann die Zeitmessung beginnt und endet. Lies die Werte aus dem Kontrollfilm oder trage deine eigenen Messwerte ein.",
+      activity("lift","observations","Messreihe aufnehmen","Verwende bei allen drei Hüben dieselbe Last und dieselben Höhenmarken. Erfasse die Masse der Last, den senkrechten Höhenunterschied und die drei Hubzeiten im Kontrollfilm oder beim eigenen Schulversuch. Wann startest und stoppst du die Uhr?",
         "Beobachte bei jedem Hub denselben Punkt der Last zwischen zwei festen Marken.",
         "Beginne beim Verlassen der unteren Marke und stoppe beim Erreichen der oberen. Für jeden Hub brauchst du eine eigene Zeit.",
         "Die drei Hübe haben dieselbe Masse und denselben Höhenunterschied. Den Rückweg klammerst du aus."),
-      calc("sumTime","Drei Zeiten addieren","Welche Gesamtzeit hast du für die drei Aufwärtsbewegungen gemessen?","s",d=>liftValues(d).sum,
+      calc("sumTime","Drei Zeiten addieren",d=>{
+        const [first,second,third]=liftValues(d).times.map(t=>givenNumber(t));
+        return "Der erste Hub dauert "+first+" s, der zweite "+second+" s und der dritte "+third+" s. Wie lange dauern die drei Aufwärtsbewegungen zusammen?";
+      },"s",d=>liftValues(d).sum,
         "Addiere die drei Einzelzeiten. Wartezeiten zwischen den Hüben zählen nicht.",d=>{const v=liftValues(d);return "Σt = "+v.times.map(t=>decimal(t)+" s").join(" + ");},
         "Das ist die Zeit für alle drei Hübe zusammen.",approximate),
-      calc("mean","Eine typische Hubzeit bestimmen","Wie lange dauert ein Hub im Mittel?","s",d=>liftValues(d).mean,
+      calc("mean","Eine typische Hubzeit bestimmen",d=>"Die drei Aufwärtsbewegungen dauern zusammen "+givenNumber(liftValues(d).sum)+" s. Wie lange dauert ein Hub im Mittel?","s",d=>liftValues(d).mean,
         "Verteile die Gesamtzeit auf die Zahl der Hübe.",d=>"t̄ = Σt / 3 = "+decimal(liftValues(d).sum)+" s / 3",
         "Diese mittlere Zeit gehört zur Arbeit eines einzelnen Hubs.",approximate),
-      calc("force","Gewichtskraft der Last","Welche Gewichtskraft hat deine Last?","N",d=>liftValues(d).force,
+      calc("force","Gewichtskraft der Last",d=>"Die gehobene Last hat eine Masse von "+givenNumber(liftValues(d).m)+" kg. Rechne mit einem Ortsfaktor von 10 N/kg. Wie groß ist die Gewichtskraft der Last?","N",d=>liftValues(d).force,
         "Nutze nur die Masse der gehobenen Last.",d=>"F_G = m · g = "+decimal(liftValues(d).m)+" kg · 10 N/kg","Diese Kraft muss beim gleichförmigen Hochziehen überwunden werden.",approximate),
-      calc("work","Arbeit für genau einen Hub","Welche Hubarbeit überträgst du zwischen den beiden Marken?","J",d=>liftValues(d).work,
+      calc("work","Arbeit für genau einen Hub",d=>{
+        const v=liftValues(d);
+        return "Die Gewichtskraft deiner Last beträgt "+givenNumber(v.force)+" N. Du hebst sie zwischen den beiden Marken um "+givenNumber(v.h)+" m an. Wie viel Hubarbeit verrichtest du bei einem Hub?";
+      },"J",d=>liftValues(d).work,
         "Multipliziere die Gewichtskraft mit der senkrechten Hubhöhe.",d=>{const v=liftValues(d);return "W = F_G · h = "+decimal(v.force)+" N · "+decimal(v.h)+" m";},
         "Der Rückweg gehört nicht zur gemessenen Aufwärtsbewegung.",approximate),
-      calc("power","Die Hubleistung bestimmen","Berechne die mittlere mechanische Leistung beim Heben.","W",d=>liftValues(d).power,
+      calc("power","Die Hubleistung bestimmen",d=>{
+        const v=liftValues(d);
+        return "Bei einem Hub verrichtest du "+givenNumber(v.work)+" J Hubarbeit. Ein Hub dauert im Mittel rund "+givenNumber(v.mean,5)+" s. Wie groß ist deine mittlere mechanische Leistung beim Heben?";
+      },"W",d=>liftValues(d).power,
         "Teile die Arbeit eines Hubs durch die mittlere Zeit eines Hubs.",d=>{const v=liftValues(d);return "P = W / t̄ = "+decimal(v.work)+" J / "+decimal(v.mean)+" s";},
         "Du hast die Leistung an der Last berechnet. Der Körper setzt dabei zusätzlich Energie für andere Vorgänge um.",approximate),
-      calc("halfTime","Die Bewegung vorhersagen","Dieselbe Last soll dieselbe Höhe in der halben mittleren Hubzeit erreichen. Welche mechanische Leistung wäre dann nötig?","W",d=>2*liftValues(d).power,
+      calc("halfTime","Die Bewegung vorhersagen",d=>{
+        const v=liftValues(d);
+        return "Für einen Hub sind "+givenNumber(v.work)+" J Arbeit nötig. Er soll jetzt nur halb so lange dauern wie die bisherige mittlere Hubzeit von rund "+givenNumber(v.mean,5)+" s. Welche mittlere mechanische Leistung ist dafür nötig?";
+      },"W",d=>2*liftValues(d).power,
         "Die Arbeit bleibt gleich. Überlege, was eine halb so große Zeit im Nenner bewirkt.",d=>{const v=liftValues(d);return "P_neu = "+decimal(v.work)+" J / "+decimal(v.mean/2)+" s";},
         "Für dieselbe Arbeit in der halben Zeit ist die doppelte Leistung nötig.",approximate),
       choose("uncertainty","Die eigene Messung beurteilen","Die Stoppuhr wird jedes Mal etwas zu spät angehalten. Wie verändert das die ausgerechnete Leistung?",
@@ -544,20 +556,20 @@ const TASKS = [
         "Achte auf das Wort „pro Sekunde“. Gezählt wird eine transportierte Menge.","Die Stromstärke gibt an, welche Ladung pro Zeit eine Stelle im Stromkreis passiert."),
       calc("charge","Ladungsportionen zählen","In 10 s passieren 12 Gondeln die Markierung. Jede steht für 0,25 C. Welche Ladung ist insgesamt vorbeigeflossen?","C",3,
         "Jede der zwölf Gondeln trägt die gleiche Modellportion.","ΔQ = 12 · 0,25 C","Die Portion 0,25 C steht für sehr viele Elementarladungen."),
-      calc("current","Stromstärke berechnen","Bestimme den mittleren Strom in den beobachteten 10 s.","A",0.30,
+      calc("current","Stromstärke berechnen","In 10 s fließt eine Ladung von insgesamt 3,0 C an der Markierung vorbei. Wie groß ist die mittlere Stromstärke in Ampere?","A",0.30,
         "Verteile die gesamte Ladung gleichmäßig auf die Beobachtungszeit.","I = ΔQ / Δt = 3,0 C / 10 s","Ein Ampere bedeutet ein Coulomb pro Sekunde."),
-      calc("currentMA","Den Messbereich wechseln","Welchen Wert würde ein Strommesser in Milliampere anzeigen?","mA",300,
+      calc("currentMA","Den Messbereich wechseln","Die Stromstärke beträgt 0,30 A. Welchen Wert zeigt das Messgerät in Milliampere an?","mA",300,
         "Ein Ampere enthält 1000 Milliampere.","I = 0,30 A · 1000 mA/A","Beim Umrechnen in die kleinere Einheit wächst der Zahlenwert."),
       choose("potentialModel","Was stellt der Höhenunterschied dar?","Im Modell wird jede Gondel an der Quelle angehoben. Was entspricht dem Höhenunterschied am Rad?",
         ["Der Zahl aller vorhandenen Gondeln","Der elektrischen Spannung, also der übertragbaren Energie pro Ladungsmenge","Dem Abstand zwischen zwei Ladungen im Draht"],1,
         "Eine gleiche Gondel kann bei größerem Gefälle mehr Energie abgeben.","Die Höhendifferenz veranschaulicht eine Potentialdifferenz. Ein echter Draht kann dabei waagerecht liegen."),
       calc("voltage","Potentiale vergleichen","Vor dem Bauteil beträgt das Potential 9 V, dahinter 3 V. Wie groß ist der Spannungsabfall in Stromrichtung?","V",6,
         "Eine Spannung beschreibt den Unterschied zwischen zwei Potentialen.","U = φ_vor − φ_nach = 9 V − 3 V","Der Bezugspunkt für die einzelnen Potentiale darf sich ändern, ihre Differenz bleibt gleich."),
-      calc("energyPerC","Ein Coulomb passiert das Bauteil","Wie viel Energie wird bei dieser Spannung pro transportiertem Coulomb umgesetzt? Gib die Energie für genau 1 C an.","J",6,
+      calc("energyPerC","Ein Coulomb passiert das Bauteil","Am Bauteil liegt eine Spannung von 6,0 V an. Wie viel Energie wird dort umgesetzt, wenn eine Ladung von 1,0 C hindurchfließt?","J",6,
         "Ein Volt entspricht einem Joule pro Coulomb.","E = U · Q = 6 V · 1 C","Mit jedem Coulomb werden hier 6 J übertragen. Die Ladung fließt weiter."),
-      calc("energy","Alle Ladungen zusammen","Wie viel Energie setzt das Bauteil in den beobachteten 10 s um?","J",18,
+      calc("energy","Alle Ladungen zusammen","Am Bauteil liegen 6,0 V an. In 10 s fließt eine Ladung von insgesamt 3,0 C hindurch. Wie viel elektrische Energie setzt das Bauteil in dieser Zeit um?","J",18,
         "Für die gesamte Energie brauchst du die gesamte transportierte Ladung.","E = 6 V · 3,0 C","Bei konstanten Größen erhältst du dieselbe Energie mit U · I · t."),
-      calc("power","Energie je Sekunde","Welche elektrische Leistung entspricht dieser Energieumsetzung?","W",1.8,
+      calc("power","Energie je Sekunde","Das Bauteil setzt in 10 s eine elektrische Energie von 18 J um. Wie groß ist seine mittlere elektrische Leistung in Watt?","W",1.8,
         "Leistung ist umgesetzte Energie pro Zeit.","P = E / Δt = 18 J / 10 s","Die Gegenprobe U · I = 6 V · 0,30 A ergibt denselben Wert."),
       calc("electrons","Elementarladungen abzählen","Eine Staubprobe trägt −4,8 · 10⁻¹⁹ C. Wie viele überschüssige Elektronen sind das? Nutze e ≈ 1,6 · 10⁻¹⁹ C.","Elektronen",3,
         "Teile den Betrag der Probenladung durch den Betrag der Ladung eines Elektrons.","n = |Q| / e = (4,8 · 10⁻¹⁹ C) / (1,6 · 10⁻¹⁹ C)","Das Minuszeichen kennzeichnet einen Elektronenüberschuss, die Anzahl ist positiv.")
@@ -570,9 +582,9 @@ const TASKS = [
         "Beginne an einem Quellenpol. Verfolge genau einen Weg durch R₁ und R₂ bis zum anderen Pol.",
         "Stecke drei Kabel: vom Pluspol zum ersten Widerstand, von dessen freiem Ende zum zweiten Widerstand und von dort zurück zum Minuspol.",
         "Ein möglicher Aufbau ist Q+ ↔ 1A, 1B ↔ 2A und 2B ↔ Q−. Andere elektrisch gleichwertige Verdrahtungen funktionieren ebenfalls."),
-      calc("rSeries","Widerstand des Einzelwegs","Wie groß ist der Gesamtwiderstand deiner Reihenschaltung?","Ω",300,
+      calc("rSeries","Widerstand des Einzelwegs","In deiner Schaltung liegen R₁ = 100 Ω und R₂ = 200 Ω in Reihe. Wie groß ist ihr Gesamtwiderstand?","Ω",300,
         "In einer Reihenschaltung durchläuft der gesamte Strom beide Widerstände.","R_ges = R₁ + R₂ = 100 Ω + 200 Ω","Auf einem einzigen Stromweg addieren sich die Widerstände."),
-      calc("iSeries","Vor dem Umbau","Welcher Strom fließt bei 6,0 V durch den einzigen Weg? Rechne zunächst in Ampere.","A",0.02,
+      calc("iSeries","Vor dem Umbau","Die Quelle liefert 6,0 V. Der Gesamtwiderstand der Reihenschaltung beträgt 300 Ω. Wie groß ist die Stromstärke im Stromkreis in Ampere?","A",0.02,
         "Nutze das ohmsche Gesetz mit dem Gesamtwiderstand.","I = U / R_ges = 6,0 V / 300 Ω","Das entspricht 20 mA. Hebe diesen Vergleichswert für den Umbau auf."),
       activity("mixed","wiringMixed","Einen zweiten Zweig stecken","R₃ (200 Ω) kommt dazu. Schließe ihn parallel zu R₂ an. R₁ soll weiterhin den gesamten Strom führen.",
         "Die Klemmen von R₂ liegen an zwei unterschiedlichen Knoten. R₃ muss dieselben beiden Knoten überbrücken.",
@@ -582,17 +594,17 @@ const TASKS = [
         "Bei gleicher Spannung fließt durch zwei gleiche Wege insgesamt doppelt so viel Strom wie durch einen. Der Ersatzwiderstand halbiert sich.",
         "R_par = (R₂ · R₃) / (R₂ + R₃) = (200 Ω · 200 Ω) / (200 Ω + 200 Ω)",
         "Der Parallelteil lässt den Strom leichter fließen als jeder seiner Einzelzweige.",{errors:[[400,"400 Ω ergäben sich auf einem einzigen Weg. Hier stehen zwei Wege gleichzeitig offen."]]}),
-      calc("rMixed","Gesamtwiderstand nach dem Umbau","R₁ liegt in Reihe mit dem Ersatzwiderstand. Wie groß ist der Gesamtwiderstand der aufgebauten Schaltung?","Ω",200,
+      calc("rMixed","Gesamtwiderstand nach dem Umbau","R₁ hat einen Widerstand von 100 Ω. Er liegt in Reihe mit dem Parallelteil aus R₂ und R₃, dessen Ersatzwiderstand 100 Ω beträgt. Wie groß ist der Gesamtwiderstand der Schaltung?","Ω",200,
         "Behandle den gesamten Parallelteil für diesen Schritt wie einen einzigen Widerstand.","R_ges = R₁ + R_par = 100 Ω + 100 Ω","Der zusätzliche Zweig hat den Gesamtwiderstand gegenüber dem ersten Aufbau verkleinert."),
-      calc("iMixed","Quellenstrom vorhersagen","Wie groß ist der nun erwartete Quellenstrom in Ampere?","A",0.03,
+      calc("iMixed","Quellenstrom vorhersagen","Nach dem Umbau beträgt der Gesamtwiderstand 200 Ω. Die Quellenspannung liegt weiterhin bei 6,0 V. Wie groß ist der Quellenstrom in Ampere?","A",0.03,
         "Die Quelle liefert weiterhin 6,0 V.","I_Q = U_Q / R_ges = 6,0 V / 200 Ω","Der kleinere Gesamtwiderstand ergibt bei gleicher Spannung einen größeren Strom."),
-      calc("iMixedMA","Das Amperemeter vorbereiten","Wie viele Milliampere erwartest du an der Quelle?","mA",30,
+      calc("iMixedMA","Das Amperemeter vorbereiten","Für den Quellenstrom hast du 0,030 A berechnet. Welchen Zahlenwert erwartest du auf einem Messgerät, das Milliampere anzeigt?","mA",30,
         "Multipliziere den Stromwert in Ampere mit 1000.","I_Q = 0,030 A · 1000 mA/A","Im unverzweigten Teil fließen diese 30 mA auch durch R₁."),
-      calc("u1Predict","Spannung am gemeinsamen Widerstand","Welche Spannung fällt am 100-Ω-Widerstand R₁ ab? Nutze den Strom in Ampere.","V",3,
+      calc("u1Predict","Spannung am gemeinsamen Widerstand","Durch den Widerstand R₁ = 100 Ω fließt der gesamte Quellenstrom von 0,030 A. Welche Spannung fällt an R₁ ab?","V",3,
         "Durch R₁ fließt der ganze Quellenstrom.","U₁ = R₁ · I_Q = 100 Ω · 0,030 A","Die restliche Quellenspannung liegt am Parallelteil."),
-      calc("u23Predict","Spannung an den Zweigen","Die Quelle liefert 6,0 V. Wie groß ist der Spannungsabfall am Parallelteil und damit an jedem einzelnen Zweig?","V",3,
+      calc("u23Predict","Spannung an den Zweigen","Die Quelle liefert 6,0 V. Am Widerstand R₁, der in Reihe mit dem Parallelteil liegt, fallen 3,0 V ab. Welche Spannung liegt an jedem der beiden parallelen Zweige?","V",3,
         "Auf einem geschlossenen Umlauf addieren sich die beiden Spannungsabfälle zur Quellenspannung.","U_par = U_Q − U₁ = 6,0 V − 3,0 V","R₂ und R₃ haben dieselbe Spannung, weil sie dieselben beiden Knoten verbinden."),
-      calc("i2Predict","Strom durch R₂","Rechne mit der Zweigspannung und 200 Ω. Welchen Strom erwartest du in R₂?","mA",15,
+      calc("i2Predict","Strom durch R₂","Am Widerstand R₂ = 200 Ω liegt eine Spannung von 3,0 V an. Wie groß ist die Stromstärke durch R₂ in Milliampere?","mA",15,
         "Teile die Zweigspannung durch den Zweigwiderstand und rechne Ampere in Milliampere um.","I₂ = (3,0 V / 200 Ω) · 1000 mA/A","Diese 15 mA fließen auf einem der beiden Zweigwege."),
       calc("i3Predict","Den Knoten ausgleichen","Wie viele Milliampere fließen durch R₃, wenn insgesamt 30 mA ankommen und 15 mA in R₂ abzweigen?","mA",15,
         "Am Knoten bleibt Ladung erhalten. Der zufließende Strom ist die Summe der abfließenden Ströme.","I₃ = I_Q − I₂ = 30 mA − 15 mA","Die beiden gleich großen Zweigwiderstände teilen den Strom zu gleichen Teilen."),
@@ -607,26 +619,33 @@ const TASKS = [
       ...symbols.flatMap((part,index)=>{
         const name=partNames[index],label=part==="q"?"an der Quelle":"an "+name;
         return [
-          {...activity("measure","read_"+part,"Messen "+label,"Miss die Spannung und die Stromstärke "+label+". Halte beide Werte als Beträge fest.",
+          {...activity("measure","read_"+part,"Messen "+label,part==="q"?"Miss die Spannung zwischen den Quellenpolen in Volt und die Stromstärke im unverzweigten Teil des Stromkreises in Milliampere. Notiere beide Beträge.":"Miss die Spannung zwischen den beiden Anschlüssen von "+name+" in Volt und die Stromstärke durch "+name+" in Milliampere. Notiere beide Beträge.",
             "Beginne mit der Spannung. Lege die zwei Messspitzen an die beiden Anschlüsse des ausgewählten Bauteils.",
             "Wechsle dann zum Strommesser. Wähle die Messstelle im betreffenden Zweig, um dort das Gerät in Reihe einzusetzen.",
             "Beide Messungen beziehen sich auf dasselbe Bauteil. Volt zusammen mit Milliampere liefert für das Produkt Milliwatt."),part},
           calc("p_"+part,part==="q"?"Leistung der Quelle":"Leistung von "+name,
-            part==="q"?"Welche elektrische Leistung gibt die Quelle nach deiner Messung ab?":"Wie viel elektrische Leistung setzt "+name+" nach deiner Messung um?","mW",
+            d=>{
+              const voltage=givenNumber(numberOf(d["u_"+part])),current=givenNumber(numberOf(d["i_"+part]));
+              const question=part==="q"?"Welche elektrische Leistung gibt die Quelle ab?":"Welche elektrische Leistung setzt "+name+" um?";
+              return "Du hast "+label+" eine Spannung von "+voltage+" V und eine Stromstärke von "+current+" mA gemessen. "+question+" Gib sie in Milliwatt an.";
+            },"mW",
             d=>powerAt(d,part),"Multipliziere die beiden Messwerte. Volt mal Milliampere ergibt direkt Milliwatt.",
             d=>"P = U · I = "+decimal(numberOf(d["u_"+part]))+" V · "+decimal(numberOf(d["i_"+part]))+" mA",
             part==="q"?"Diese Leistung wird dem äußeren Stromkreis zugeführt.":"Diese Leistung wird in "+name+" überwiegend in innere Energie umgesetzt.",approximate)
         ];
       }),
-      calc("psum","Eine Leistungsbilanz aufstellen","Addiere die Leistungen der drei Widerstände. Welche Leistung nehmen sie zusammen auf?","mW",
+      calc("psum","Eine Leistungsbilanz aufstellen",d=>{
+        const [p1,p2,p3]=symbols.slice(1).map(part=>givenNumber(powerAt(d,part)));
+        return "Aus deinen Messwerten ergeben sich für R₁ "+p1+" mW, für R₂ "+p2+" mW und für R₃ "+p3+" mW. Wie viel elektrische Leistung nehmen die drei Widerstände zusammen auf?";
+      },"mW",
         d=>loadPower(d),"Die Quelle steht auf der anderen Seite der Bilanz. Addiere hier nur die drei Verbraucher.",
         d=>"ΣP_R = "+symbols.slice(1).map(p=>decimal(powerAt(d,p))+" mW").join(" + "),"Vergleiche die Summe mit der abgegebenen Quellenleistung.",approximate),
-      calc("pdiff","Die Bilanz prüfen","Wie groß ist der Betrag der Differenz zwischen abgegebener Quellenleistung und aufgenommener Gesamtleistung? Verwende die Produkte der ungerundeten Messwerte.","mW",
+      calc("pdiff","Die Bilanz prüfen",d=>"Nach deinen Messwerten gibt die Quelle "+givenNumber(powerAt(d,"q"))+" mW ab. Die drei Widerstände nehmen zusammen "+givenNumber(loadPower(d))+" mW auf. Wie groß ist der Betrag der Leistungsdifferenz in Milliwatt?","mW",
         d=>Math.abs(powerAt(d,"q")-loadPower(d)),"Berechne zunächst beide Seiten der Bilanz und bilde den Betrag ihres Unterschieds.",
         d=>"|ΔP| = |"+decimal(powerAt(d,"q"))+" mW − "+decimal(loadPower(d))+" mW|",
         d=>d.mode==="real"?"Reale Einzelmessungen können durch Rundung und den Einfluss der Messgeräte etwas voneinander abweichen. Prüfe auffällige Differenzen an deinem Versuchsplatz.":"In der idealen Schaltung wird die gesamte Leistung der Quelle an den drei Widerständen umgesetzt.",
         {rel:0.03,abs:0.05}),
-      choose("brokenBranch","Ein Kabel löst sich","R₃ wird abgetrennt, R₂ bleibt verbunden. Was geschieht beim digitalen 6-V-Aufbau mit dem Quellenstrom?",
+      choose("brokenBranch","Ein Kabel löst sich","An der 6,0-V-Quelle liegt R₁ (100 Ω) in Reihe mit zwei parallelen Widerständen R₂ und R₃ (je 200 Ω). Der Quellenstrom beträgt 30 mA. Wie ändert er sich, wenn nur der Zweig mit R₃ unterbrochen wird?",
         ["Er sinkt auf 20 mA. Es bleibt der zuerst gebaute Reihenweg durch R₁ und R₂.","Er steigt auf 60 mA, weil es nur noch einen Zweig gibt.","Er sinkt auf 0 mA, weil jeder unterbrochene Zweig den ganzen Stromkreis öffnet."],0,
         "Verfolge den verbleibenden Weg vom Plus- zum Minuspol.",
         "Der Strom kann weiterhin durch R₁ und R₂ fließen. Mit 300 Ω Gesamtwiderstand sind es wieder 6 V / 300 Ω = 20 mA.")
@@ -635,38 +654,38 @@ const TASKS = [
   {
     title:"Der Auftrag der Technik-AG",tag:"Konsole",prompt:"Ein vorhandener und ein neuer Akkuschrauber leisten an der Welle gleich viel. Rechne nach, für welchen Einsatz sich das neue Gerät lohnt.",
     steps:[
-      calc("pinA","Elektrische Aufnahmeleistung von A","A arbeitet mit 12 V und 5,0 A. Welche elektrische Leistung nimmt er auf?","W",60,
+      calc("pinA","Elektrische Aufnahmeleistung von A","Akkuschrauber A wird mit einer Spannung von 12 V betrieben. Die Stromstärke beträgt 5,0 A. Welche elektrische Leistung nimmt A auf?","W",60,
         "Multipliziere Spannung und Stromstärke.","P_auf,A = U · I = 12 V · 5,0 A","An der Welle steht nur der als Nutzleistung bezeichnete Teil zur Verfügung."),
-      calc("ratio","Den genutzten Anteil berechnen","An der Welle kommen 48 W an. Welcher Bruchteil der aufgenommenen Leistung wird genutzt? Gib eine Dezimalzahl zwischen 0 und 1 an.","",0.8,
+      calc("ratio","Den genutzten Anteil berechnen","Akkuschrauber A nimmt elektrisch 60 W auf und gibt an der Welle 48 W mechanisch ab. Welcher Anteil der aufgenommenen Leistung wird an der Welle genutzt? Gib ihn als Dezimalzahl an.","",0.8,
         "Die aufgenommene Leistung steht im Nenner.","η_A = P_nutz / P_auf = 48 W / 60 W","Die Einheiten Watt kürzen sich heraus."),
-      calc("etaA","Aus dem Anteil Prozent machen","Wie groß ist der Wirkungsgrad von A in Prozent?","%",80,
+      calc("etaA","Aus dem Anteil Prozent machen","Akkuschrauber A nutzt an der Welle einen Anteil von 0,80 der aufgenommenen Leistung. Wie groß ist sein Wirkungsgrad in Prozent?","%",80,
         "Multipliziere den dimensionslosen Anteil mit 100 %.","η_A = 0,80 · 100 %","Von je 100 J aufgenommener Energie kommen 80 J als mechanische Nutzenergie an.",
         {errors:[[0.8,"0,8 ist der Anteil als Dezimalzahl. Gefragt ist hier der Zahlenwert in Prozent."]]}),
-      calc("other","Den übrigen Energieumsatz finden","Welche Leistung von A erscheint außerhalb der mechanischen Nutzleistung?","W",12,
+      calc("other","Den übrigen Energieumsatz finden","Akkuschrauber A nimmt elektrisch 60 W auf. Seine mechanische Nutzleistung an der Welle beträgt 48 W. Wie groß ist die übrige Leistung, die etwa zur Erwärmung des Geräts beiträgt?","W",12,
         "Ziehe Nutzleistung von Aufnahmeleistung ab.","P_übrig = 60 W − 48 W","Vor allem Motor und Umgebung erwärmen sich. Die Energie bleibt erhalten."),
-      calc("pinB","Die Aufnahme von B bestimmen","B läuft bei 12 V und 4,5 A. Wie groß ist seine elektrische Aufnahmeleistung?","W",54,
+      calc("pinB","Die Aufnahme von B bestimmen","An Akkuschrauber B liegt eine Spannung von 12 V an. Die Stromstärke beträgt 4,5 A. Welche elektrische Leistung nimmt B auf?","W",54,
         "Verwende dieselbe Gleichung wie für A, mit dem Strom von B.","P_auf,B = 12 V · 4,5 A","B benötigt für die gleichen 48 W an der Welle weniger elektrische Leistung."),
-      calc("etaB","Den zweiten Wirkungsgrad bestimmen","Welchen Wirkungsgrad erreicht B? Runde auf eine Nachkommastelle.","%",88.8888888889,
+      calc("etaB","Den zweiten Wirkungsgrad bestimmen","Akkuschrauber B nimmt elektrisch 54 W auf und gibt an der Welle 48 W mechanisch ab. Wie groß ist sein Wirkungsgrad in Prozent? Runde auf eine Nachkommastelle.","%",88.8888888889,
         "Teile die mechanische Nutzleistung durch die elektrische Aufnahmeleistung von B und rechne in Prozent um.",
         "η_B = (48 W / 54 W) · 100 %","Unter diesem Betriebspunkt setzt B einen größeren Anteil der zugeführten Energie in Nutzenergie um.",{abs:0.051,digits:1}),
-      calc("deltaP","Den Leistungsunterschied berechnen","Wie viel Aufnahmeleistung spart B gegenüber A?","W",6,
+      calc("deltaP","Den Leistungsunterschied berechnen","Für die gleiche mechanische Nutzleistung nimmt A elektrisch 60 W auf und B 54 W. Um wie viel Watt ist die Aufnahmeleistung von B geringer?","W",6,
         "Vergleiche die elektrischen Aufnahmeleistungen bei derselben Nutzleistung.","ΔP = P_auf,A − P_auf,B = 60 W − 54 W","Diese Differenz gilt für jede Stunde unter den angegebenen Betriebsbedingungen."),
-      calc("kw","Für die Stromrechnung umrechnen","Wie groß ist diese Leistungsdifferenz in Kilowatt?","kW",0.006,
+      calc("kw","Für die Stromrechnung umrechnen","Die beiden Akkuschrauber unterscheiden sich in ihrer elektrischen Aufnahmeleistung um 6 W. Wie groß ist diese Differenz in Kilowatt?","kW",0.006,
         "1 kW entspricht 1000 W.","ΔP = 6 W / (1000 W/kW)","Mit kW und Stunden erhältst du direkt kWh."),
-      calc("saving","Die Energie in 100 Stunden berechnen","Wie viele Kilowattstunden spart B bei 100 Stunden gleicher Arbeit?","kWh",0.6,
+      calc("saving","Die Energie in 100 Stunden berechnen","Bei gleicher mechanischer Nutzleistung nimmt B elektrisch 0,006 kW weniger auf als A. Wie viele Kilowattstunden spart B in 100 Betriebsstunden?","kWh",0.6,
         "Multipliziere die Leistungsdifferenz in kW mit den Betriebsstunden.","ΔE = ΔP · t = 0,006 kW · 100 h","Eine Leistung in W und eine Energie in kWh beschreiben verschiedene Größen."),
-      calc("emissions","Die vermiedenen Emissionen berechnen","Der Betriebsstrom verursacht im Modell 0,50 kg CO₂e pro kWh. Wie viel CO₂e vermeidet B beim Betrieb in 100 h?","kg",0.30,
+      calc("emissions","Die vermiedenen Emissionen berechnen","Akkuschrauber B spart in 100 Betriebsstunden 0,60 kWh Strom. Jede Kilowattstunde verursacht im Modell 0,50 kg CO₂e. Wie viele Kilogramm CO₂e vermeidet B in diesen 100 Stunden?","kg",0.30,
         "Multipliziere eingesparte Energie mit der Klimawirkung pro kWh.","Δm = 0,60 kWh · 0,50 kg/kWh","CO₂e steht für CO₂-Äquivalente. Hier wird nur der Unterschied im Betrieb berechnet."),
-      calc("blocks","Die Herstellung einholen","Für die Herstellung von B fallen zusätzlich 3,0 kg CO₂e an. Wie viele Blöcke zu 100 Betriebsstunden braucht B bis zum Ausgleich?","Blöcke",10,
+      calc("blocks","Die Herstellung einholen","Die Herstellung von B verursacht zusätzlich 3,0 kg CO₂e. Pro 100 Betriebsstunden spart B gegenüber A 0,30 kg CO₂e. Wie viele solcher 100-Stunden-Blöcke braucht B bis zum Ausgleich?","Blöcke",10,
         "Ein Block spart im Betrieb 0,30 kg. Wie oft passt diese Einsparung in 3,0 kg?",
         "n = 3,0 kg / (0,30 kg je Block)","Bis zu dieser Schwelle wiegt in der Modellrechnung die zusätzliche Herstellung schwerer."),
-      calc("hours","Den Kipppunkt in Stunden nennen","Nach wie vielen Betriebsstunden sind die zusätzlichen Herstellungsemissionen genau ausgeglichen?","h",1000,
+      calc("hours","Den Kipppunkt in Stunden nennen","Zum Ausgleich der zusätzlichen Herstellungsemissionen braucht B zehn Blöcke zu je 100 Betriebsstunden. Nach wie vielen Betriebsstunden ist der Ausgleich erreicht?","h",1000,
         "Jeder gerade gezählte Block umfasst 100 Stunden.","t = 10 · 100 h","Über dieser Nutzungsdauer kann B unter den angenommenen Bedingungen insgesamt weniger Emissionen verursachen."),
-      choose("weigh","Zwei Urteile einordnen","Eine Gruppe schaut nur auf den Stromverbrauch im Betrieb, die andere berücksichtigt zusätzlich die Herstellung. Warum können die Gruppen bei 100 Stunden zu verschiedenen Empfehlungen kommen?",
+      choose("weigh","Zwei Urteile einordnen","In 100 Betriebsstunden spart B gegenüber A 0,30 kg CO₂e. Die Herstellung von B verursacht zusätzlich 3,0 kg CO₂e. Warum kann eine Gruppe, die nur den Betrieb betrachtet, zu einem anderen Urteil kommen als eine Gruppe, die auch die Herstellung einbezieht?",
         ["Die Energieerhaltung gilt nur bei der Herstellung.","Ein Wirkungsgrad über 80 % macht die Herstellung klimaneutral.","Sie beziehen unterschiedliche Abschnitte des Gerätelebens ein. Herstellungsaufwand und Betriebsersparnis haben bei kurzer Nutzung verschiedenes Gewicht."],2,
         "Überlege, welche Zahlen in jeder der beiden Betrachtungen vorkommen.",
         "Wer nur den Betriebsstrom betrachtet, bevorzugt B. Wer die zusätzlichen Herstellungsemissionen einrechnet, hat für 100 Stunden gute Gründe, A weiterzuverwenden."),
-      activity("writing","letter","Der Technik-AG antworten","Schreibe der AG zwei oder drei Sätze. Welches Gerät empfiehlst du für die geplanten 100 Stunden? Belege deine Wahl mit den Zahlen und nenne eine Bedingung, unter der sich das Urteil ändern kann.",
+      activity("writing","letter","Der Technik-AG antworten","Die Technik-AG besitzt A und plant 100 Betriebsstunden. Mit B würde sie dabei 0,30 kg CO₂e im Betrieb sparen. Für die Herstellung von B fallen zusätzlich 3,0 kg CO₂e an. Nach 1000 Betriebsstunden wären beide Beträge gleich groß. Welches Gerät empfiehlst du der AG? Begründe deine Wahl in zwei oder drei Sätzen und nenne eine Bedingung, unter der sich dein Urteil ändern würde.",
         "Beginne mit einer klaren Empfehlung für die AG. Beziehe Betrieb und Herstellung ein.",
         "Vergleiche 0,30 kg mit 3,0 kg. Nutze den errechneten Kipppunkt für den zweiten Teil deiner Nachricht.",
         "Zum Vergleichen: „Liebe Technik-AG, für eure 100 Stunden würde ich A behalten. B spart dabei 0,30 kg CO₂e, seine Herstellung verursacht zusätzlich 3,0 kg. Oberhalb von 1000 Stunden kann sich B bei gleichem Strommix lohnen.“")
@@ -685,6 +704,9 @@ function liftValues(d){
 }
 const powerAt=(d,p)=>numberOf(d["u_"+p])*numberOf(d["i_"+p]);
 const loadPower=d=>symbols.slice(1).reduce((sum,p)=>sum+powerAt(d,p),0);
+function givenNumber(value,significantDigits=15){
+  return value.toLocaleString("de-DE",{useGrouping:false,maximumSignificantDigits:significantDigits});
+}
 function exampleValue(s,d){
   const value=toValue(s.answer,d);
   return s.digits===undefined?decimal(value):value.toLocaleString("de-DE",{minimumFractionDigits:s.digits,maximumFractionDigits:s.digits});
@@ -758,7 +780,7 @@ function renderGuided(i,d){
   if(s.type==="lift")answer=modeSwitch(i,d)+liftEvidence(d)+'<label class="entry free" for="f-observations">Mein Start- und Stoppsignal<textarea data-field="observations" id="f-observations" rows="2" maxlength="600" placeholder="Ich starte, wenn … und stoppe, wenn …">'+esc(d.observations||"")+'</textarea></label>';
   if(s.type==="writing")answer='<label class="entry free" for="f-letter">Deine Nachricht<textarea data-field="letter" id="f-letter" rows="4" maxlength="1200" placeholder="Liebe Technik-AG, …">'+esc(d.letter||"")+'</textarea></label>'+(d.modelShown?'<section class="evidence"><h3>Eigene Antwort vergleichen</h3><p>'+esc(s.meaning)+'</p><label class="choice"><input type="checkbox" data-field="comparison" '+(d.comparison==="yes"?"checked":"")+'><span>Ich habe Empfehlung, Zahlenbeleg und Bedingung mit meinem Text verglichen.</span></label></section>':"");
   if(s.id==="read_q")answer=modeSwitch(i,d)+answer;
-  return '<section class="current-step"><h3 id="question-title" tabindex="-1">'+esc(s.title)+'</h3><p class="question">'+esc(s.question)+'</p>'+support(i,s,d)+answer+'</section>'+historyPanel(i,d);
+  return '<section class="current-step"><h3 id="question-title" tabindex="-1">'+esc(s.title)+'</h3><p class="question">'+esc(toValue(s.question,d))+'</p>'+support(i,s,d)+answer+'</section>'+historyPanel(i,d);
 }
 function checkStep(s,d){
   const fault=(msg,field=s.id)=>({msg,field}),raw=d[s.id]??"";
