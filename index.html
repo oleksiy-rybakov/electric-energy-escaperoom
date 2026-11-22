@@ -358,20 +358,24 @@ function boardDrawing(wires,kind,pick,probes=[],insert="",locked=false){
   const symbolsSvg='<g class="board-metal"><path d="M54 78 V142 M32 142 H76 M42 154 H66 M54 154 V219 M153 60 H175 M240 60 H262"/><rect x="175" y="50" width="65" height="20"/><path d="M326 104 V135 M326 191 V226"/><rect x="316" y="135" width="20" height="56"/>'+(all?'<path d="M470 104 V135 M470 191 V226"/><rect x="460" y="135" width="20" height="56"/>':'')+'</g>';
   const labels='<g class="board-type"><text x="17" y="180">6 V</text><text x="207" y="34" text-anchor="middle">R₁ · 100 Ω</text><text x="286" y="161" text-anchor="end">R₂</text><text x="286" y="183" text-anchor="end">200 Ω</text>'+(all?'<text x="428" y="161" text-anchor="end">R₃</text><text x="428" y="183" text-anchor="end">200 Ω</text>':'')+'</g>';
   let meter="";
-  if(insert){const [pin]=CONTACTS[insert],xy=SOCKETS[pin],x=xy[0]+22,y=xy[1]-15;meter='<g class="branch-meter"><circle cx="'+x+'" cy="'+y+'" r="12"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle">A</text></g>';}
+  if(insert){
+    const [x,y,r]={q:[54,113,12],r1:[164,60,9],r2:[326,122,11],r3:[470,122,11]}[insert];
+    meter='<g class="branch-meter"><circle cx="'+x+'" cy="'+y+'" r="'+r+'"/><text x="'+x+'" y="'+(y+4)+'" text-anchor="middle">A</text></g>';
+  }
   const buttons=pins.map(p=>{
     const [x,y,l,full]=SOCKETS[p],probe=probes.indexOf(p);
     return '<button type="button" class="socket '+(p===pick?"picked ":"")+(probe===0?"red-probe":probe===1?"black-probe":"")+'" style="left:'+(100*x/540)+'%;top:'+(100*y/281)+'%" data-pin="'+p+'" aria-label="'+esc(l+" · "+full)+'" aria-pressed="'+(p===pick||probe>=0)+'"'+(locked?" disabled":"")+'><i></i><span>'+l+'</span></button>';
   }).join("");
-  return '<div class="wire-board" role="group" aria-label="Steckbrett mit beschrifteten Buchsen"><svg aria-hidden="true" viewBox="0 0 540 281" preserveAspectRatio="none">'+paths+symbolsSvg+meter+'</svg>'+buttons+'</div>';
+  return '<div class="wire-board" role="group" aria-label="Steckbrett mit beschrifteten Buchsen"><svg aria-hidden="true" viewBox="0 0 540 281" preserveAspectRatio="none">'+paths+symbolsSvg+labels+meter+'</svg>'+buttons+'</div>';
 }
 function leadList(wires,editable){
   return '<div class="lead-list" aria-label="Gesetzte Kabel">'+wires.map((pair,k)=>editable?'<button type="button" data-remove-wire="'+k+'" aria-label="Kabel '+wireName(pair)+' entfernen">'+wireName(pair)+' ×</button>':'<span>'+wireName(pair)+'</span>').join("")+'</div>';
 }
 function buildPanel(s,d,locked){
   const wires=boardWires(d,s.type),pick=d.wirePick||"";
-  return '<div class="lab-card"><h4>Steckbrett · 6 V</h4><p>Wähle zwei Buchsen nacheinander, um ein Kabel zu stecken. Eine Buchse darf mehrere Kabel tragen. Wähle ein Kabel unter dem Brett, um es zu lösen.</p>'+
-    boardDrawing(wires,s.type,pick,[],"",locked)+leadList(wires,!locked)+'<p class="lab-status" role="status">'+esc(d.boardMessage||(pick?"Erster Anschluss "+SOCKETS[pick][2]+". Wähle den zweiten.":"Noch keine Buchse ausgewählt."))+'</p></div>';
+  const directions=locked?"":'<p>Wähle zwei Buchsen nacheinander, um ein Kabel zu stecken. Eine Buchse darf mehrere Kabel tragen. Wähle ein Kabel unter dem Brett, um es zu lösen.</p>';
+  const status=locked?"":'<p class="lab-status" role="status">'+esc(d.boardMessage||(pick?"Erster Anschluss "+SOCKETS[pick][2]+". Wähle den zweiten.":"Noch keine Buchse ausgewählt."))+'</p>';
+  return '<div class="lab-card"><h4>Steckbrett · 6 V</h4>'+directions+boardDrawing(wires,s.type,pick,[],"",locked)+leadList(wires,!locked)+status+'</div>';
 }
 function editWire(d,kind,id){
   const wires=boardWires(d,kind);
@@ -560,7 +564,7 @@ const TASKS = [
     ]
   },
   {
-    title:"Die Werkbank hinter Glas", tag:"Spiegel", prompt:"Das Steckbrett ist leer. Baue zuerst einen einfachen Stromkreis und erweitere ihn anschließend um einen zweiten Zweig.",
+    title:"Die Werkbank hinter Glas", tag:"Spiegel", prompt:"Die Spiegelsteuerung braucht zwei Stromwege. Baue den Kreis auf, sage Ströme und Spannungen voraus und überprüfe deine Rechnung am Steckbrett.",
     steps:[
       activity("series","wiringSeries","Zwei Widerstände in Reihe verdrahten","Verbinde die 6-V-Quelle, R₁ (100 Ω) und R₂ (200 Ω) zu einem geschlossenen Stromkreis. Der Strom soll durch beide Widerstände nacheinander fließen.",
         "Beginne an einem Quellenpol. Verfolge genau einen Weg durch R₁ und R₂ bis zum anderen Pol.",
